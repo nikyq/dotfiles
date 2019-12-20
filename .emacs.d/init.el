@@ -20,6 +20,16 @@
 ;; ------------------------------------------------------------------------------------
 
 ;; ------------------------------------------------------------------------------------
+;; INITIALIZATION
+
+(straight-use-package 'leaf)
+(straight-use-package 'leaf-keywords)
+(leaf-keywords-init)
+(leaf-all counsel swiper)
+
+;; ------------------------------------------------------------------------------------
+
+;; ------------------------------------------------------------------------------------
 ;; CUSTOM COMMANDS & ALIASES
 
 (defmacro leaf-all (&rest packages)
@@ -48,12 +58,6 @@
 
 ;; ------------------------------------------------------------------------------------
 ;; PACKAGE CONFIGS
-
-(straight-use-package 'leaf)
-(straight-use-package 'leaf-keywords)
-(leaf-keywords-init)
-
-(leaf-all counsel swiper)
 
 ; This function was partially copied from hankail02/dotfiles/.emacs.d/config/base/init-evil.el
 (leaf evil
