@@ -26,6 +26,9 @@
   (interactive)
   (load-file "~/.emacs.d/init.el"))
 
+(defmacro leaf-all (packages)
+  (cons 'progn (mapcar (lambda (pkg) `(leaf ,pkg :straight t)) packages)))
+
 (defalias 'lcfg 'load-config)
 
 ;; ------------------------------------------------------------------------------------
