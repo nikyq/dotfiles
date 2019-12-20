@@ -22,14 +22,27 @@
 ;; ------------------------------------------------------------------------------------
 ;; CUSTOM COMMANDS & ALIASES
 
+(defmacro leaf-all (&rest packages)
+  (cons 'progn (mapcar (lambda (pkg) `(leaf ,pkg :straight t)) packages)))
+
 (defun load-config ()
   (interactive)
   (load-file "~/.emacs.d/init.el"))
 
-(defmacro leaf-all (&rest packages)
-  (cons 'progn (mapcar (lambda (pkg) `(leaf ,pkg :straight t)) packages)))
+(defun magit-stage-current-buffer-and-commit ()
+  (interactive)
+  (magit-stage-file (buffer-file-name (window-buffer (minibuffer-selected-window))))
+  (magit-commit-create))
 
 (defalias 'lcfg 'load-config)
+(defalias 'mscbc 'magit-stage-current-buffer-and-commit)
+
+;; ------------------------------------------------------------------------------------
+
+;; ------------------------------------------------------------------------------------
+;; GLOBAL CONFIGS
+
+(setq find-file-visit-truename t)
 
 ;; ------------------------------------------------------------------------------------
 
@@ -40,7 +53,7 @@
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
 
-(leaf-all magit which-key counsel swiper)
+(leaf-all magit counsel swiper)
 
 ; This function was partially copied from hankail02/dotfiles/.emacs.d/config/base/init-evil.el
 (leaf evil
@@ -56,5 +69,9 @@
   :config (ivy-mode 1)
   :setq (ivy-use-virtual-buffers . t)
         (enable-recursive-minibuffers . t))
+
+(leaf which-key
+  :straight t
+  :config (which-key-mode 1))
 
 ;; ------------------------------------------------------------------------------------
