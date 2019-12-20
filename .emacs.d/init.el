@@ -26,7 +26,7 @@
   (interactive)
   (load-file "~/.emacs.d/init.el"))
 
-(defmacro leaf-all (packages)
+(defmacro leaf-all (&rest packages)
   (cons 'progn (mapcar (lambda (pkg) `(leaf ,pkg :straight t)) packages)))
 
 (defalias 'lcfg 'load-config)
@@ -40,7 +40,7 @@
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
 
-(leaf-all (magit which-key counsel swiper))
+(leaf-all magit which-key counsel swiper)
 
 ; This function was partially copied from hankail02/dotfiles/.emacs.d/config/base/init-evil.el
 (leaf evil
