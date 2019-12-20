@@ -53,7 +53,7 @@
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
 
-(leaf-all magit counsel swiper)
+(leaf-all counsel swiper)
 
 ; This function was partially copied from hankail02/dotfiles/.emacs.d/config/base/init-evil.el
 (leaf evil
@@ -73,5 +73,9 @@
 (leaf which-key
   :straight t
   :config (which-key-mode 1))
+
+(leaf magit
+  :straight t
+  :bind (:magit-file-mode-map ("C-c C-c" . magit-stage-current-buffer-and-commit)))
 
 ;; ------------------------------------------------------------------------------------
