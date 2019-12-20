@@ -40,6 +40,8 @@
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
 
+(leaf-all (magit which-key))
+
 ; This function was partially copied from hankail02/dotfiles/.emacs.d/config/base/init-evil.el
 (leaf evil
   :straight t
@@ -48,11 +50,5 @@
   :bind ((:evil-insert-state-map ("C-k" . nil)) ; conflict with other ^k bindings
 	 (:minibuffer-local-map  ("C-j" . next-line-or-history-element)
 				 ("C-k" . previous-line-or-history-element)))) 
-
-(leaf magit
-  :straight t)
-
-(leaf which-key
-  :straight t)
 
 ;; ------------------------------------------------------------------------------------
