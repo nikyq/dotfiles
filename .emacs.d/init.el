@@ -40,7 +40,7 @@
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
 
-(leaf-all (magit which-key))
+(leaf-all (magit which-key counsel swiper))
 
 ; This function was partially copied from hankail02/dotfiles/.emacs.d/config/base/init-evil.el
 (leaf evil
@@ -50,5 +50,11 @@
   :bind ((:evil-insert-state-map ("C-k" . nil)) ; conflict with other ^k bindings
 	 (:minibuffer-local-map  ("C-j" . next-line-or-history-element)
 				 ("C-k" . previous-line-or-history-element)))) 
+
+(leaf ivy
+  :straight t
+  :config (ivy-mode 1)
+  :setq (ivy-use-virtual-buffers . t)
+        (enable-recursive-minibuffers . t))
 
 ;; ------------------------------------------------------------------------------------
