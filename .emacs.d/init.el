@@ -4,15 +4,16 @@
 ;; STRAIGHT SETUP
 ;; This section was copied from github.com/raxod502/striaght.el/README.md
 
+(setq package-enable-at-startup nil)
+
+(setq straight-repository-branch "develop")
 (defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+(let ((bootstrap-file (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
       (bootstrap-version 5))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
+        (url-retrieve-synchronously "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+                                    'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
@@ -46,7 +47,7 @@
 (straight-use-package 'leaf)
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
-(leaf-all counsel swiper magit)
+(leaf-all counsel swiper)
 
 ;; ------------------------------------------------------------------------------------
 
@@ -63,7 +64,11 @@
 ; This part was partially copied from hankail05/dotfiles/.emacs.d/config/base/init-evil.el
 (leaf evil
   :straight t
-  :config (evil-mode 1))
+  :leaf-defer nil
+  :config (evil-mode 1)
+  :bind ((:evil-insert-state-map ("C-k" . nil)) ; conflict with other ^k bindings
+         (:minibuffer-local-map  ("C-j" . next-line-or-history-element)
+                                 ("C-k" . previous-line-or-history-element))))
 
 (leaf ivy
   :straight t
@@ -75,7 +80,10 @@
   :straight t
   :config (which-key-mode 1))
 
-(require 'magit)
-(define-key magit-file-mode-map (kbd "C-c C-c") #'magit-stage-current-buffer-and-commit)
+(leaf magit
+  :straight t
+  :require t
+  :leaf-defer nil
+  :bind (:magit-file-mode-map ("C-c C-c" . magit-stage-current-buffer-and-commit)))
 
 ;; ------------------------------------------------------------------------------------
