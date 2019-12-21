@@ -20,16 +20,6 @@
 ;; ------------------------------------------------------------------------------------
 
 ;; ------------------------------------------------------------------------------------
-;; INITIALIZATION
-
-(straight-use-package 'leaf)
-(straight-use-package 'leaf-keywords)
-(leaf-keywords-init)
-(leaf-all counsel swiper)
-
-;; ------------------------------------------------------------------------------------
-
-;; ------------------------------------------------------------------------------------
 ;; CUSTOM COMMANDS & ALIASES
 
 (defmacro leaf-all (&rest packages)
@@ -46,6 +36,16 @@
 
 (defalias 'lcfg 'load-config)
 (defalias 'mscbc 'magit-stage-current-buffer-and-commit)
+
+;; ------------------------------------------------------------------------------------
+
+;; ------------------------------------------------------------------------------------
+;; INITIALIZATION
+
+(straight-use-package 'leaf)
+(straight-use-package 'leaf-keywords)
+(leaf-keywords-init)
+(leaf-all counsel swiper)
 
 ;; ------------------------------------------------------------------------------------
 
