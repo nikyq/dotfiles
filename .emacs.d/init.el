@@ -60,14 +60,10 @@
 ;; ------------------------------------------------------------------------------------
 ;; PACKAGE CONFIGS
 
-; This part was partially copied from hankail05/dotfiles/.emacs.d/config/base/init-evil.el
 (leaf evil
   :straight t
   :leaf-defer nil
-  :config (evil-mode 1)
-  :bind ((:evil-insert-state-map ("C-k" . nil)) ; conflict with other ^k bindings
-         (:minibuffer-local-map  ("C-j" . next-line-or-history-element)
-                                 ("C-k" . previous-line-or-history-element))))
+  :config (evil-mode 1))
 
 (leaf evil-god-state
   :straight t
