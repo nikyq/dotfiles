@@ -74,6 +74,13 @@
   :leaf-defer nil
   :bind* ("ESC" . nil))
 
+(leaf evil-god-state
+  :straight t
+  :config (evil-define-key 'normal global-map (kbd "SPC") 'evil-execute-in-god-state)
+          (evil-define-key 'visual global-map (kbd "SPC") 'evil-execute-in-god-state)
+          (evil-define-key 'insert global-map (kbd "s-c") 'evil-execute-in-god-state)
+          (evil-define-key 'god global-map (kbd "ESC") 'evil-god-state-bail))
+
 (leaf ivy
   :straight t
   :config (ivy-mode 1)
