@@ -50,8 +50,6 @@
 (leaf-all counsel swiper)
 
 ;; ------------------------------------------------------------------------------------
-
-;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
 
 (setq find-file-visit-truename t)
@@ -69,6 +67,12 @@
   :bind ((:evil-insert-state-map ("C-k" . nil)) ; conflict with other ^k bindings
          (:minibuffer-local-map  ("C-j" . next-line-or-history-element)
                                  ("C-k" . previous-line-or-history-element))))
+
+(leaf god-mode
+  :straight t
+  :require t
+  :leaf-defer nil
+  :bind* ("ESC" . nil))
 
 (leaf ivy
   :straight t
