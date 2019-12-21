@@ -53,6 +53,7 @@
 ;; GLOBAL CONFIGS
 
 (setq find-file-visit-truename t)
+(define-key global-map (kbd "s-c") 'evil-execute-in-god-state)
 
 ;; ------------------------------------------------------------------------------------
 
@@ -78,7 +79,6 @@
   :straight t
   :config (evil-define-key 'normal global-map (kbd "SPC") 'evil-execute-in-god-state)
           (evil-define-key 'visual global-map (kbd "SPC") 'evil-execute-in-god-state)
-          (evil-define-key 'insert global-map (kbd "s-c") 'evil-execute-in-god-state)
           (evil-define-key 'god global-map (kbd "ESC") 'evil-god-state-bail))
 
 (leaf ivy
