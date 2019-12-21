@@ -47,7 +47,7 @@
 (straight-use-package 'leaf)
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
-(leaf-all counsel swiper)
+(leaf-all counsel swiper god-mode)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -69,12 +69,6 @@
          (:minibuffer-local-map  ("C-j" . next-line-or-history-element)
                                  ("C-k" . previous-line-or-history-element))))
 
-(leaf god-mode
-  :straight t
-  :require t
-  :leaf-defer nil
-  :bind* ("ESC" . nil))
-
 (leaf evil-god-state
   :straight t
   :config (evil-define-key 'normal global-map (kbd "SPC") 'evil-execute-in-god-state)
@@ -89,7 +83,8 @@
 
 (leaf which-key
   :straight t
-  :config (which-key-mode 1))
+  :config (which-key-mode 1)
+          (which-key-enable-god-mode-support))
 
 (leaf magit
   :straight t
