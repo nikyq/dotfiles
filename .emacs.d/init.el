@@ -46,7 +46,7 @@
 (straight-use-package 'leaf)
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
-(leaf-all counsel swiper)
+(leaf-all counsel swiper magit)
 
 ;; ------------------------------------------------------------------------------------
 
@@ -75,11 +75,6 @@
   :straight t
   :config (which-key-mode 1))
 
-(leaf magit
-  :straight t
-  :leaf-defun nil
-  :leaf-autoload nil
-  :bind ("C-c C-c" . magit-stage-current-buffer-and-commit))
-
+(define-key magit-file-mode-map (kbd "C-c C-c") #'magit-stage-current-buffer-and-commit)
 
 ;; ------------------------------------------------------------------------------------
