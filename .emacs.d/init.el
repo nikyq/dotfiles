@@ -47,7 +47,7 @@
 (straight-use-package 'leaf)
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
-(leaf-all counsel swiper god-mode)
+(leaf-all counsel swiper god-mode evil-god-state)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
