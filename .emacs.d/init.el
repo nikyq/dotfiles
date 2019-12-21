@@ -59,7 +59,7 @@
 ;; ------------------------------------------------------------------------------------
 ;; PACKAGE CONFIGS
 
-; This function was partially copied from hankail02/dotfiles/.emacs.d/config/base/init-evil.el
+; This part was partially copied from hankail05/dotfiles/.emacs.d/config/base/init-evil.el
 (leaf evil
   :straight t
   :init (setq evil-want-keybinding nil)
