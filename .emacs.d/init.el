@@ -36,6 +36,7 @@
 
 (defalias 'lcfg 'load-config)
 (defalias 'mscbc 'magit-stage-current-buffer-and-commit)
+(defalias 'pes 'pp-eval-last-sexp)
 
 ;; ------------------------------------------------------------------------------------
 
@@ -74,11 +75,11 @@
   :straight t
   :config (which-key-mode 1))
 
-(macroexpand-1 '(leaf magit
+(leaf magit
   :straight t
-  :leaf-defer nil
-  :bind (:magit-file-mode-map
-	 :package init ("C-c C-c" . magit-stage-current-buffer-and-commit))))
+  :leaf-defun nil
+  :leaf-autoload nil
+  :bind ("C-c C-c" . magit-stage-current-buffer-and-commit))
 
 
 ;; ------------------------------------------------------------------------------------
