@@ -62,11 +62,7 @@
 ; This part was partially copied from hankail05/dotfiles/.emacs.d/config/base/init-evil.el
 (leaf evil
   :straight t
-  :init (setq evil-want-keybinding nil)
-  :config (evil-mode 1)
-  :bind ((:evil-insert-state-map ("C-k" . nil)) ; conflict with other ^k bindings
-	 (:minibuffer-local-map  ("C-j" . next-line-or-history-element)
-				 ("C-k" . previous-line-or-history-element)))) 
+  :config (evil-mode 1))
 
 (leaf ivy
   :straight t
@@ -78,8 +74,11 @@
   :straight t
   :config (which-key-mode 1))
 
-(leaf magit
+(macroexpand-1 '(leaf magit
   :straight t
-  :bind (:magit-file-mode-map ("C-c C-c" . magit-stage-current-buffer-and-commit)))
+  :leaf-defer nil
+  :bind (:magit-file-mode-map
+	 :package init ("C-c C-c" . magit-stage-current-buffer-and-commit))))
+
 
 ;; ------------------------------------------------------------------------------------
