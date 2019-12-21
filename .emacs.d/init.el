@@ -75,6 +75,7 @@
   :straight t
   :config (which-key-mode 1))
 
+(require 'magit)
 (define-key magit-file-mode-map (kbd "C-c C-c") #'magit-stage-current-buffer-and-commit)
 
 ;; ------------------------------------------------------------------------------------
