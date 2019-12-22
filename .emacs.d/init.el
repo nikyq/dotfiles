@@ -119,6 +119,7 @@
 
 (leaf smartparens
   :straight t
+  :hook ((lisp-mode-hook emacs-lisp-mode-hook) . smartparens-strict-mode)
   :require smartparens-config)
 
 (leaf evil-smartparens
