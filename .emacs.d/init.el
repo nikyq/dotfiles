@@ -54,6 +54,7 @@
 
 (setq find-file-visit-truename t)
 (define-key global-map (kbd "s-c") 'evil-execute-in-god-state)
+(setq-default indent-tabs-mode nil)
 
 ;; ------------------------------------------------------------------------------------
 
