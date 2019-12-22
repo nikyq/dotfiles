@@ -35,6 +35,34 @@
   (magit-stage-file (buffer-file-name (window-buffer (minibuffer-selected-window))))
   (magit-commit-create))
 
+(defun indent-relative-back ()
+  (interactive)
+  (if (and abbrev-mode
+	   (eq (char-syntax (preceding-char)) ?w))
+      (expand-abbrev))
+  (let ((start-column (current-column))
+	indent)
+    (save-excursion
+      (beginning-of-line)
+      (if (re-search-backward "^[^\n]" nil t)
+	  (let ((end (save-excursion (forward-line 1) (point))))
+	    (move-to-column start-column)
+	    ;; Is start-column inside a tab on this line?
+	    (if (> (current-column) start-column)
+		(backward-char 1))
+	    (or (looking-at "[ \t]")
+		(skip-chars-backward " \t" end))
+	    (skip-chars-backward "^ \t" end)
+	    (or (= (point) end) (setq indent (current-column))))))
+    (cond (indent
+           (let ((opoint (point-marker)))
+             (print indent)
+             (indent-to indent 0)
+             (if (> opoint (point))
+                 (goto-char opoint))
+             (move-marker opoint nil)))
+          (t (tab-to-tab-stop)))))
+            
 (defalias 'lcfg 'load-config)
 (defalias 'mscbc 'magit-stage-current-buffer-and-commit)
 (defalias 'pes 'pp-eval-last-sexp)
