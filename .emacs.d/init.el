@@ -62,7 +62,15 @@
                  (goto-char opoint))
              (move-marker opoint nil)))
           (t (tab-to-tab-stop)))))
-            
+
+(defun avy-goto-open-paren ()
+  (interactive)
+  (avy--generic-jump "(" nil))
+
+(defun avy-goto-closed-paren ()
+  (interactive)
+  (avy--generic-jump ")" nil))
+
 (defalias 'lcfg 'load-config)
 (defalias 'mscbc 'magit-stage-current-buffer-and-commit)
 (defalias 'pes 'pp-eval-last-sexp)
@@ -75,7 +83,7 @@
 (straight-use-package 'leaf)
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
-(leaf-all counsel swiper god-mode evil-god-state)
+(leaf-all counsel swiper god-mode evil-god-state hydra)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -119,11 +127,44 @@
 
 (leaf smartparens
   :straight t
+  :require smartparens-config
   :hook ((lisp-mode-hook emacs-lisp-mode-hook) . smartparens-strict-mode)
-  :require smartparens-config)
+  :hydra (hydra-sp
+          (evil-normal-state-map ",")
+          "Smartparens"
+          ("f" avy-goto-char-timer)
+          ("F" (lambda () (interactive)
+                          (avy-goto-open-paren)
+                          (forward-char)))
+          ("p" avy-goto-closed-paren)
+          ("o" (lambda () (interactive)
+                          (if (eq (string-to-char ")") (char-after))
+                              (sp-beginning-of-sexp)
+                            (sp-end-of-sexp))))
+          ("h" sp-backward-slurp-sexp)
+          ("H" sp-backward-barf-sexp)
+          ("l" sp-forward-slurp-sexp)
+          ("L" sp-forward-barf-sexp)
+          ;; ("j" (sp-transpose-sexp 1))
+          ;; ("k" (sp-transpose-sexp -1))
+          ("/" sp-split-sexp)
+          ("s" sp-splice-sexp)
+          ; TODO : undo
+          ("i" evil-insert)
+          ("ESC" nil :exit t))
+  :config (key-chord-define evil-insert-state-map (kbd "))") 'hydra-sp/body))
 
 (leaf evil-smartparens
   :straight t
   :hook (smartparens-enabled-hook . evil-smartparens-mode))
+
+(leaf avy
+  :straight t
+  :require t)
+
+(leaf key-chord
+  :straight t
+  :setq (key-chord-two-keys-delay . 0.01)
+  :config (key-chord-mode 1))
 
 ;; ------------------------------------------------------------------------------------
