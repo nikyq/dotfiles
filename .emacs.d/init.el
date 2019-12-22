@@ -117,4 +117,12 @@
   :leaf-defer nil
   :bind (:magit-file-mode-map ("C-c C-c" . magit-stage-current-buffer-and-commit)))
 
+(leaf smartparens
+  :straight t
+  :require smartparens-config)
+
+(leaf evil-smartparens
+  :straight t
+  :hook (smartparens-enabled-hook . evil-smartparens-mode))
+
 ;; ------------------------------------------------------------------------------------
