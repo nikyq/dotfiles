@@ -90,7 +90,8 @@
 
 (setq find-file-visit-truename t)
 (global-set-key (kbd "<Hangul>") 'toggle-input-method)
-(set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+(set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"
+                                       :size 11.0))
 (define-key global-map (kbd "s-c") 'evil-execute-in-god-state)
 (setq-default indent-tabs-mode nil)
 
