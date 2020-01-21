@@ -90,8 +90,7 @@
 
 (setq find-file-visit-truename t)
 (global-set-key (kbd "<Hangul>") 'toggle-input-method)
-(set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"
-                                       :size 11.0))
+(set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
 (define-key global-map (kbd "s-c") 'evil-execute-in-god-state)
 (setq-default indent-tabs-mode nil)
 
@@ -148,8 +147,12 @@
           ("H" sp-backward-barf-sexp)
           ("l" sp-forward-slurp-sexp)
           ("L" sp-forward-barf-sexp)
-          ;; ("j" (sp-transpose-sexp 1))
-          ;; ("k" (sp-transpose-sexp -1))
+          ; ("j" (sp-transpose-sexp 1))
+          ; ("k" (sp-transpose-sexp -1))  ; It'd probably take quite much time to make these work
+          ("u" undo-tree-undo)
+          ("e" (lambda () (interactive)
+                          (sp-end-of-sexp)
+                          (eval-last-sexp)))
           ("/" sp-split-sexp)
           ("s" sp-splice-sexp)
           ; TODO : undo
