@@ -127,6 +127,10 @@
   :leaf-defer nil
   :bind (:magit-file-mode-map ("C-c C-c" . magit-stage-current-buffer-and-commit)))
 
+(leaf flymake
+  :straight t
+  :hook haskell-mode-hook)
+
 (leaf smartparens
   :straight t
   :require smartparens-config
