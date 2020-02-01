@@ -83,7 +83,7 @@
 (straight-use-package 'leaf)
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
-(leaf-all counsel swiper god-mode evil-god-state hydra flymake-haskell-multi flymake-cursor)
+(leaf-all counsel swiper god-mode evil-god-state hydra haskell-mode flymake-haskell-multi flymake-cursor)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
