@@ -80,8 +80,11 @@
 ;; ------------------------------------------------------------------------------------
 ;; INITIALIZATION
 
+(straight-use-package 'exec-path-from-shell)
 (straight-use-package 'leaf)
 (straight-use-package 'leaf-keywords)
+
+(exec-path-from-shell-initialize)
 (leaf-keywords-init)
 (leaf-all counsel swiper god-mode evil-god-state hydra haskell-mode flycheck-haskell)
 
