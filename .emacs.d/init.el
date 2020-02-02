@@ -83,7 +83,7 @@
 (straight-use-package 'leaf)
 (straight-use-package 'leaf-keywords)
 (leaf-keywords-init)
-(leaf-all counsel swiper god-mode evil-god-state hydra haskell-mode flymake-haskell-multi flymake-cursor)
+(leaf-all counsel swiper god-mode evil-god-state hydra haskell-mode flycheck-haskell)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -127,9 +127,11 @@
   :leaf-defer nil
   :bind (:magit-file-mode-map ("C-c C-c" . magit-stage-current-buffer-and-commit)))
 
-(leaf flymake
+(leaf flycheck
   :straight t
-  :hook haskell-mode-hook)
+  :hook (haskell-mode-hook . flycheck-mode)
+  :config (flycheck-add-next-checker 'haskell-stack-ghc 'haskell-hlint)
+          (flycheck-add-next-checker 'haskell-ghc 'haskell-hlint))
 
 (leaf smartparens
   :straight t
