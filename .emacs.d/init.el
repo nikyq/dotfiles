@@ -86,7 +86,7 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper god-mode evil-god-state hydra haskell-mode flycheck-haskell)
+(leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -181,5 +181,9 @@
   :straight t
   :setq (key-chord-two-keys-delay . 0.01)
   :config (key-chord-mode 1))
+
+(leaf haskell-mode
+  :straight t
+  :hook (haskell-mode-hook . interactive-haskell-mode))
 
 ;; ------------------------------------------------------------------------------------
