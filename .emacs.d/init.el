@@ -186,6 +186,13 @@
   :setq (key-chord-two-keys-delay . 0.01)
   :config (key-chord-mode 1))
 
+(leaf windmove
+  :straight t
+  :config (evil-define-key 'normal 'global-map (kbd "C-h") 'windmove-left)
+          (evil-define-key 'normal 'global-map (kbd "C-l") 'windmove-right)
+          (evil-define-key 'normal 'global-map (kbd "C-k") 'windmove-up)
+          (evil-define-key 'normal 'global-map (kbd "C-j") 'windmove-down))
+
 (leaf haskell-mode
   :straight t
   :hook (haskell-mode-hook . interactive-haskell-mode))
