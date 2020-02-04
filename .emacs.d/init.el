@@ -96,6 +96,7 @@
 (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
 (define-key global-map (kbd "s-c") 'evil-execute-in-god-state)
 (setq-default indent-tabs-mode nil)
+(global-display-line-numbers-mode)
 
 ;; ------------------------------------------------------------------------------------
 
