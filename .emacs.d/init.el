@@ -119,6 +119,10 @@
   :setq (ivy-use-virtual-buffers . t)
         (enable-recursive-minibuffers . t))
 
+(leaf counsel
+  :straight t
+  :config (global-set-key [remap execute-extended-command] #'counsel-M-x))
+
 (leaf which-key
   :straight t
   :config (which-key-mode 1)
