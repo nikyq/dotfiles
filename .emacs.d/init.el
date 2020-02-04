@@ -117,7 +117,7 @@
 (leaf ivy
   :straight t
   :config (ivy-mode 1)
-  :setq (ivy-use-virtual-buffers . t)
+  :custom (ivy-use-virtual-buffers . t)
         (enable-recursive-minibuffers . t))
 
 (leaf counsel
@@ -184,7 +184,7 @@
 
 (leaf key-chord
   :straight t
-  :setq (key-chord-two-keys-delay . 0.01)
+  :custom (key-chord-two-keys-delay . 0.01)
   :config (key-chord-mode 1))
 
 (leaf windmove
