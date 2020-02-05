@@ -196,7 +196,6 @@
 
 (leaf haskell-mode
   :straight t
-  :hook (haskell-mode-hook . interactive-haskell-mode)
-  :custom (haskell-process-args-stack-ghci . '("--ghci-options=-ferror-spans" "--no-build" "--no-load" "-prof")))
+  :hook (haskell-mode-hook . interactive-haskell-mode))
 
 ;; ------------------------------------------------------------------------------------
