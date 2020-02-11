@@ -86,7 +86,8 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell tern company-tern)
+(leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell
+          ac-js2)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -128,7 +129,7 @@
 (leaf company
   :straight t
   :bind ("M-<tab>" . company-complete)
-  :config (add-to-list 'company-backends 'company-tern))
+  :config (add-to-list 'company-backends 'ac-js2-company))
 
 (leaf which-key
   :straight t
