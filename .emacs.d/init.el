@@ -86,7 +86,7 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell)
+(leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell tern company-tern)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
