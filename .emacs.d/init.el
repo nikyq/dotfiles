@@ -86,7 +86,7 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell)
+(leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell company)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -97,6 +97,7 @@
 (define-key global-map (kbd "s-c") 'evil-execute-in-god-state)
 (setq-default indent-tabs-mode nil)
 (global-display-line-numbers-mode)
+(add-hook 'after-init-hook 'global-company-mode)
 
 ;; ------------------------------------------------------------------------------------
 
