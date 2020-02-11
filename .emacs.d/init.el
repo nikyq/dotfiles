@@ -127,7 +127,8 @@
 
 (leaf company
   :straight t
-  :bind ("M-<tab>" . company-complete))
+  :bind ("M-<tab>" . company-complete)
+  :config (add-to-list 'company-backends 'company-tern))
 
 (leaf which-key
   :straight t
