@@ -87,7 +87,7 @@
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
 (leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell
-          ac-js2)
+          lsp-mode company-lsp)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -126,10 +126,17 @@
   :straight t
   :config (global-set-key [remap execute-extended-command] #'counsel-M-x))
 
+(leaf lsp-mode
+  :straight t)
+
 (leaf company
   :straight t
-  :bind ("M-<tab>" . company-complete)
-  :config (add-to-list 'company-backends 'ac-js2-company))
+  :bind ("M-<tab>" . company-complete))
+
+(leaf company-lsp
+  :straight t
+  :config
+  (add-to-list 'company-backends 'company-lsp))
 
 (leaf which-key
   :straight t
