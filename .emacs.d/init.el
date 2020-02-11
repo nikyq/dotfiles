@@ -86,7 +86,7 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell company)
+(leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -124,6 +124,10 @@
 (leaf counsel
   :straight t
   :config (global-set-key [remap execute-extended-command] #'counsel-M-x))
+
+(leaf company
+  :straight t
+  :bind ("M-<tab>" . company-complete))
 
 (leaf which-key
   :straight t
