@@ -116,15 +116,18 @@
           (evil-define-key 'visual global-map (kbd "SPC") 'evil-execute-in-god-state)
           (evil-define-key 'god global-map (kbd "ESC") 'evil-god-state-bail))
 
-(leaf ivy
-  :straight t
-  :config (ivy-mode 1)
-  :custom (ivy-use-virtual-buffers . t)
-        (enable-recursive-minibuffers . t))
+(straight-use-package
+  '(selectrum :host github :repo "raxod502/selectrum")) ; Look! This library is not even on MELPA! Amazing!
 
-(leaf counsel
-  :straight t
-  :config (global-set-key [remap execute-extended-command] #'counsel-M-x))
+(straight-use-package
+  '(selectrum-prescient :host github :repo "raxod502/prescient.el"
+                        :files ("selectrum-prescient.el")))
+
+(leaf selectrum
+  :straight t                           ; This won't have much effects...
+  :config (spectrum-mode 1)
+          (spectrum-prescient-mode 1)
+          (prescient-persist-mode 1))
 
 (leaf lsp-mode
   :straight t)
