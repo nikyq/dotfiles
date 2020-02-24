@@ -125,9 +125,14 @@
 
 (leaf selectrum
   :straight t                           ; This won't have much effects...
-  :config (spectrum-mode 1)
-          (spectrum-prescient-mode 1)
+  :config (selectrum-mode 1)
+          (selectrum-prescient-mode 1)
           (prescient-persist-mode 1))
+
+(leaf prescient
+  :straight t
+  :config (add-to-list prescient-filter-method 'fuzzy)
+  )
 
 (leaf lsp-mode
   :straight t)
