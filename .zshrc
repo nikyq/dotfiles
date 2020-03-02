@@ -108,6 +108,8 @@ bindkey -v
 source "$HOME/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh"
 source "$HOME/dotfiles/zsh-plugins/fzf-tab/fzf-tab.plugin.zsh"
 
+setopt globdots
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_CTRL_T_COMMAND='find .'
 
