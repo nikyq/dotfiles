@@ -131,8 +131,7 @@
 
 (leaf prescient
   :straight t
-  :config (add-to-list prescient-filter-method 'fuzzy)
-  )
+  :config (add-to-list 'prescient-filter-method 'fuzzy))
 
 (leaf lsp-mode
   :straight t)
