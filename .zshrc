@@ -119,6 +119,8 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
 path+=/home/nikyq/scripts
 export path
 
+zstyle ':completion:*' matcher-list 'r:|?=** m:{a-z\-}={A-Z\_}'
+
 dmenu_path+='(emc lock)'
 export dmenu_path
 
