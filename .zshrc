@@ -106,6 +106,7 @@ bindkey -v
 ###################################################################################################################
 
 source "$HOME/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh"
+source "$HOME/dotfiles/zsh-plugins/fzf-tab/fzf-tab.plugin.zsh"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_CTRL_T_COMMAND='find .'
@@ -118,8 +119,6 @@ POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
 
 path+=/home/nikyq/scripts
 export path
-
-zstyle ':completion:*' matcher-list 'r:|?=** m:{a-z\-}={A-Z\_}'
 
 dmenu_path+='(emc lock)'
 export dmenu_path
