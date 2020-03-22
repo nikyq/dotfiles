@@ -87,7 +87,7 @@
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
 (leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell
-          lsp-mode company-lsp lsp-ui cmake-ide rtags)
+          lsp-mode company-lsp lsp-ui rtags)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -144,6 +144,9 @@
   :straight t
   :config
   (add-to-list 'company-backends 'company-lsp))
+
+(leaf rtags
+  :require t)
 
 (leaf which-key
   :straight t
@@ -218,5 +221,8 @@
 (leaf haskell-mode
   :straight t
   :hook (haskell-mode-hook . interactive-haskell-mode))
+
+(leaf cmake-ide
+  :config (cmake-ide-setup))
 
 ;; ------------------------------------------------------------------------------------
