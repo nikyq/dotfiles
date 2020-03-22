@@ -146,6 +146,7 @@
   (add-to-list 'company-backends 'company-lsp))
 
 (leaf rtags
+  :straight t
   :require t)
 
 (leaf which-key
@@ -223,6 +224,7 @@
   :hook (haskell-mode-hook . interactive-haskell-mode))
 
 (leaf cmake-ide
+  :straight t
   :config (cmake-ide-setup))
 
 ;; ------------------------------------------------------------------------------------
