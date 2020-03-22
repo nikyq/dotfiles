@@ -87,7 +87,7 @@
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
 (leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell
-          lsp-mode company-lsp lsp-ui cmake-ide)
+          lsp-mode company-lsp lsp-ui cmake-ide rtags)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
