@@ -224,7 +224,9 @@
   :hook (haskell-mode-hook . interactive-haskell-mode))
 
 (leaf julia-snail
-  :straight t
+  :straight (julia-snail :type git
+                         :host github
+                         :repo "gcv/julia-snail")
   :hook (julia-mode-hook . julia-snail-mode))
 
 (leaf lsp-julia
