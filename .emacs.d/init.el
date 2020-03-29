@@ -87,7 +87,7 @@
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
 (leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell
-          lsp-mode company-lsp lsp-ui)
+          lsp-mode company-lsp lsp-ui jupyter yasnippet vterm)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -223,8 +223,25 @@
   :straight t
   :hook (haskell-mode-hook . interactive-haskell-mode))
 
+(leaf julia-snail
+  :straight t
+  :hook (julia-mode-hook . julia-snail-mode))
+
+(leaf lsp-julia
+  :straight t
+  :require t
+  :config 
+          (setq lsp-julia-flags '("--startup-file=no" "--history-file=no"))
+          (setq lsp-folding-range-limit 100))
+
 (leaf cmake-ide
   :straight t
-  :config (cmake-ide-setup))
+  :config (progn (dolist (ccommon '(c-mode-hook c++-mode-hook cmake-mode-hook))
+                   (add-hook ccommon
+                             (lambda ()
+                               (if (cide--locate-project-dir)
+                                   (progn (setq-local cmake-ide-build-dir
+                                                      (concat (cide--locate-project-dir) "build"))
+                                          (cmake-ide-setup))))))))
 
 ;; ------------------------------------------------------------------------------------
