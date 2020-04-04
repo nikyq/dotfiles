@@ -226,7 +226,8 @@
 (leaf julia-snail
   :straight (julia-snail :type git
                          :host github
-                         :repo "gcv/julia-snail")
+                         :repo "gcv/julia-snail"
+                         :files ("JuliaSnail.jl" "*.el"))
   :hook (julia-mode-hook . julia-snail-mode))
 
 (leaf lsp-julia
