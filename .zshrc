@@ -1,3 +1,5 @@
+plugins=(git zsh-z vi-mode fzf fzf-tab)
+
 export TERM="xterm-256color" 
 
 # If you come from bash you might have to change your $PATH.
@@ -70,9 +72,7 @@ ZSH_THEME="powerlevel9k"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git )
 
-source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
@@ -106,11 +106,9 @@ bindkey -v
 ###################################################################################################################
 
 source "$HOME/zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh"
-source "$HOME/dotfiles/zsh-plugins/fzf-tab/fzf-tab.plugin.zsh"
 
 setopt globdots
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_CTRL_T_COMMAND='find .'
 
 POWERLEVEL9K_SHORTEN_DIR_LENGTH=1
@@ -125,3 +123,7 @@ export path
 dmenu_path+='(emc lock)'
 export dmenu_path
 
+ZSH_DISABLE_COMPFIX=true
+
+source $ZSH/oh-my-zsh.sh
+autoload -Uz compinit && compinit
