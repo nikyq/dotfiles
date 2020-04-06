@@ -237,6 +237,15 @@
           (setq lsp-julia-flags '("--startup-file=no" "--history-file=no"))
           (setq lsp-folding-range-limit 100))
 
+(leaf nodejs-repl
+  :straight t
+  :require t
+  :bind (:js-mode-map ("C-x C-e" . nodejs-repl-send-last-expression)
+                      ("C-c C-j" . nodejs-repl-send-line)
+                      ("C-c C-r" . nodejs-repl-send-region)
+                      ("C-c C-l" . nodejs-repl-load-file)
+                      ("C-c C-z" . nodejs-switch-to-repl)))
+
 (leaf cmake-ide
   :straight t
   :config (progn (dolist (ccommon '(c-mode-hook c++-mode-hook cmake-mode-hook))
