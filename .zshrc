@@ -125,5 +125,7 @@ export dmenu_path
 
 ZSH_DISABLE_COMPFIX=true
 
+alias npi="npm --save install"
+
 source $ZSH/oh-my-zsh.sh
 autoload -Uz compinit && compinit
