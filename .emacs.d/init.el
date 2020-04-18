@@ -166,6 +166,13 @@
   :config (flycheck-add-next-checker 'haskell-stack-ghc 'haskell-hlint)
           (flycheck-add-next-checker 'haskell-ghc 'haskell-hlint))
 
+(leaf verb
+  :straight (verb :type git
+                  :host github
+                  :repo "federicotdn/verb")
+  :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
+
+
 (leaf smartparens
   :straight t
   :require smartparens-config
