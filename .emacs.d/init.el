@@ -94,7 +94,19 @@
 
 (setq find-file-visit-truename t)
 (global-set-key (kbd "<Hangul>") 'toggle-input-method)
+
+(set-face-attribute 'default nil :family "Sarasa Term K")
+
+(set-face-attribute 'default nil :height 100)
+
+(setq face-font-rescale-alist
+      '(("NanumGothicCoding" . 1.1)))
+
 (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+
+;| 가 | 나 | 다 | 라 | 마 | 바 | 사 | 아 | 자 | 차 |
+;| aa | bb | cc | dd | ee | ff | gg | hh | ii | jj |
+
 (define-key global-map (kbd "s-c") 'evil-execute-in-god-state)
 (setq-default indent-tabs-mode nil)
 (global-display-line-numbers-mode)
