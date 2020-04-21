@@ -87,32 +87,34 @@
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
 (leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell
-          lsp-mode company-lsp lsp-ui jupyter yasnippet vterm)
+          lsp-mode lsp-ui jupyter yasnippet vterm)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
 
-(setq find-file-visit-truename t)
-(global-set-key (kbd "<Hangul>") 'toggle-input-method)
+(defun config-global () 
+  (setq find-file-visit-truename t)
+  (global-set-key (kbd "<Hangul>") 'toggle-input-method)
 
-(set-face-attribute 'default nil :family "Sarasa Term K")
+  (set-face-attribute 'default nil :family "Sarasa Term K")
 
-(set-face-attribute 'default nil :height 100)
+  (set-face-attribute 'default nil :height 100)
 
-(setq face-font-rescale-alist
-      '(("NanumGothicCoding" . 1.1)))
+  (setq face-font-rescale-alist
+        '(("NanumGothicCoding" . 1.1)))
 
-(set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
+  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
 
 ;| 가 | 나 | 다 | 라 | 마 | 바 | 사 | 아 | 자 | 차 |
 ;| aa | bb | cc | dd | ee | ff | gg | hh | ii | jj |
 
-(define-key global-map (kbd "s-c") 'evil-execute-in-god-state)
-(setq-default indent-tabs-mode nil)
-(global-display-line-numbers-mode)
-(add-hook 'after-init-hook 'global-company-mode)
+  (define-key global-map (kbd "s-c") 'evil-execute-in-god-state)
+  (setq-default indent-tabs-mode nil)
+  (global-display-line-numbers-mode)
+  (add-hook 'after-init-hook 'global-company-mode)
 
-(tool-bar-mode 0)
+  (tool-bar-mode 0)
+  (centaur-tabs-mode 1))
 
 ;; ------------------------------------------------------------------------------------
 
@@ -152,10 +154,12 @@
 
 (leaf company
   :straight t
+  :require t
   :bind ("M-<tab>" . company-complete))
 
 (leaf company-lsp
   :straight t
+  :after company
   :config
   (add-to-list 'company-backends 'company-lsp))
 
@@ -179,6 +183,24 @@
   :hook (haskell-mode-hook . flycheck-mode)
   :config (flycheck-add-next-checker 'haskell-stack-ghc 'haskell-hlint)
           (flycheck-add-next-checker 'haskell-ghc 'haskell-hlint))
+
+(leaf treemacs
+  :straight t
+  :bind ("C-<SPC>" . treemacs))
+
+(leaf treemacs-evil
+  :straight t
+  :require t)
+
+(leaf centaur-tabs
+  :straight t
+  :require t
+  :config (centaur-tabs-mode 1)
+  :bind (("C-<prior>" . centaur-tabs-backward)
+         ("C-<next>" . centaur-tabs-forward)))
+
+(leaf org
+  :require t)
 
 (leaf verb
   :straight (verb :type git
@@ -278,3 +300,5 @@
                                           (cmake-ide-setup))))))))
 
 ;; ------------------------------------------------------------------------------------
+
+(config-global)
