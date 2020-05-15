@@ -1,4 +1,4 @@
-plugins=(git zsh-z vi-mode fzf fzf-tab)
+plugins=(git zsh-z vi-mode fzf fzf-tab zsh-autosuggestions)
 
 export TERM="xterm-256color" 
 
@@ -126,6 +126,7 @@ export dmenu_path
 ZSH_DISABLE_COMPFIX=true
 
 alias npi="npm --save install"
+alias yay="yay --pacman powerpill"
 
 source $ZSH/oh-my-zsh.sh
 autoload -Uz compinit && compinit
