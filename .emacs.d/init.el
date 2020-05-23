@@ -132,6 +132,10 @@
           (evil-define-key 'visual global-map (kbd "SPC") 'evil-execute-in-god-state)
           (evil-define-key 'god global-map (kbd "ESC") 'evil-god-state-bail))
 
+(leaf aggressive-indent
+  :straight t
+  :config (global-aggressive-indent-mode 1))
+
 (straight-use-package
   '(selectrum :host github :repo "raxod502/selectrum")) ; Look! This library is not even on MELPA! Amazing!
 
