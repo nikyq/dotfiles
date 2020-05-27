@@ -154,7 +154,8 @@
   :config (add-to-list 'prescient-filter-method 'fuzzy))
 
 (leaf lsp-mode
-  :straight t)
+  :straight t
+  :config (setq lsp-enable-indentation nil))
 
 (leaf company
   :straight t
