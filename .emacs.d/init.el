@@ -86,7 +86,7 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper god-mode evil-god-state hydra flycheck-haskell
+(leaf-all counsel swiper hydra flycheck-haskell
           lsp-mode lsp-ui jupyter yasnippet vterm)
 
 ;; ------------------------------------------------------------------------------------
@@ -105,10 +105,10 @@
 
   (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
 
-;| 가 | 나 | 다 | 라 | 마 | 바 | 사 | 아 | 자 | 차 |
-;| aa | bb | cc | dd | ee | ff | gg | hh | ii | jj |
+                                        ;| 가 | 나 | 다 | 라 | 마 | 바 | 사 | 아 | 자 | 차 |
+                                        ;| aa | bb | cc | dd | ee | ff | gg | hh | ii | jj |
 
-  (define-key global-map (kbd "s-c") 'evil-execute-in-god-state)
+                                        ; (define-key global-map (kbd "s-c") 'evil-execute-in-god-state)
   (setq-default indent-tabs-mode nil)
   (global-display-line-numbers-mode)
   (add-hook 'after-init-hook 'global-company-mode)
@@ -126,11 +126,11 @@
   :leaf-defer nil
   :config (evil-mode 1))
 
-(leaf evil-god-state
-  :straight t
-  :config (evil-define-key 'normal global-map (kbd "SPC") 'evil-execute-in-god-state)
-          (evil-define-key 'visual global-map (kbd "SPC") 'evil-execute-in-god-state)
-          (evil-define-key 'god global-map (kbd "ESC") 'evil-god-state-bail))
+;; (leaf evil-god-state
+;;   :straight t
+;;   :config (evil-define-key 'normal global-map (kbd "SPC") 'evil-execute-in-god-state)
+;;           (evil-define-key 'visual global-map (kbd "SPC") 'evil-execute-in-god-state)
+;;           (evil-define-key 'god global-map (kbd "ESC") 'evil-god-state-bail))
 
 (leaf aggressive-indent
   :straight t
@@ -174,8 +174,8 @@
 
 (leaf which-key
   :straight t
-  :config (which-key-mode 1)
-          (which-key-enable-god-mode-support))
+  :config (which-key-mode 1))
+;; (which-key-enable-god-mode-support)
 
 (leaf magit
   :straight t
