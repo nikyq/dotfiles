@@ -109,6 +109,11 @@
                                         ;| aa | bb | cc | dd | ee | ff | gg | hh | ii | jj |
 
                                         ; (define-key global-map (kbd "s-c") 'evil-execute-in-god-state)
+
+  (setq c-basic-offset 4)
+  (c-set-offset 'brace-list-intro '+)
+  (c-set-offset 'brace-list-entry 'c-lineup-under-anchor)
+
   (setq-default indent-tabs-mode nil)
   (global-display-line-numbers-mode)
   (add-hook 'after-init-hook 'global-company-mode)
@@ -262,10 +267,10 @@
 
 (leaf windmove
   :straight t
-  :config (evil-define-key 'normal 'global-map (kbd "C-h") 'windmove-left)
-          (evil-define-key 'normal 'global-map (kbd "C-l") 'windmove-right)
-          (evil-define-key 'normal 'global-map (kbd "C-k") 'windmove-up)
-          (evil-define-key 'normal 'global-map (kbd "C-j") 'windmove-down))
+  :config (evil-define-key 'normal 'global-map (kbd "M-h") 'windmove-left)
+          (evil-define-key 'normal 'global-map (kbd "M-l") 'windmove-right)
+          (evil-define-key 'normal 'global-map (kbd "M-k") 'windmove-up)
+          (evil-define-key 'normal 'global-map (kbd "M-j") 'windmove-down))
 
 (leaf haskell-mode
   :straight t
