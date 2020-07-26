@@ -86,7 +86,7 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper hydra flycheck-haskell
+(leaf-all counsel swiper hydra flycheck-haskell expand-region
           lsp-mode lsp-ui jupyter yasnippet vterm)
 
 ;; ------------------------------------------------------------------------------------
