@@ -5,11 +5,12 @@ export XMODIFIERS='@im=uim'
 
 xmodmap -e 'remove mod1 = Alt_R'
 xmodmap -e 'keycode 108 = Hangul'
-xmodmap -e 'remove control = Control_R'
+# xmodmap -e 'remove control = Control_R'
 
 xmodmap -e "clear lock"
 xmodmap -e "clear control"
 xmodmap -e "keycode 66 = Control_L"
+xmodmap -e "keycode 37 = Multi_key"
 xmodmap -e "add control = Control_L Control_R"
 
 xmodmap -e 'keycode 9 = Hangul_Hanja'
