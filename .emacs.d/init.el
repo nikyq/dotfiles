@@ -160,7 +160,10 @@
 
 (leaf lsp-mode
   :straight t
-  :config (setq lsp-enable-indentation nil))
+  :config
+  (setq lsp-enable-indentation nil)
+  (setq gc-cons-threshold 100000000)
+  (setq read-process-output-max (* 1024 1024)))
 
 (leaf company
   :straight t
@@ -287,8 +290,19 @@
   :straight t
   :require t
   :config 
-          (setq lsp-julia-flags '("--startup-file=no" "--history-file=no"))
-          (setq lsp-folding-range-limit 100))
+  (defun lsp-julia--rls-command ()
+    "The command to lauch the Julia Language Server."
+    `(,lsp-julia-command
+      ,@lsp-julia-flags
+      ,(concat "-e using LanguageServer, Sockets, SymbolServer;"
+               " server = LanguageServer.LanguageServerInstance("
+               " stdin, stdout, "
+               " \"" (lsp-julia--get-root) "\","
+               " \"" (lsp-julia--get-depot-path) "\");"
+               " server.runlinter = true;"
+               " run(server);")))
+  (setq lsp-folding-range-limit 100)
+  (setq lsp-julia-flags '("--startup-file=no" "--history-file=no")))
 
 (leaf nodejs-repl
   :straight t
