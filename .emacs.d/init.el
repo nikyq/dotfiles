@@ -204,6 +204,7 @@
 
 (leaf treemacs
   :straight t
+  :config (evil-define-key 'treemacs treemacs-mode-map (kbd "B") #'treemacs-bookmark)
   :bind ("C-<SPC>" . treemacs))
 
 (leaf treemacs-evil
