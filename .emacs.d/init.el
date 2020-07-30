@@ -87,7 +87,7 @@
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
 (leaf-all counsel swiper hydra flycheck-haskell expand-region
-          lsp-mode lsp-ui jupyter yasnippet vterm)
+          lsp-mode lsp-ui jupyter yasnippet vterm eglot-jl)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -164,6 +164,11 @@
   (setq lsp-enable-indentation nil)
   (setq gc-cons-threshold 100000000)
   (setq read-process-output-max (* 1024 1024)))
+
+(leaf eglot
+  :preface
+  (defun project-root (project)
+    (car (project-roots project))))
 
 (leaf company
   :straight t
