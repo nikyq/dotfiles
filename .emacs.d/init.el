@@ -175,12 +175,6 @@
   :require t
   :bind ("M-<tab>" . company-complete))
 
-(leaf company-lsp
-  :straight t
-  :after company
-  :config
-  (add-to-list 'company-backends 'company-lsp))
-
 (leaf rtags
   :straight t
   :require t)
