@@ -72,3 +72,5 @@ export XMODIFIERS='@im=uim'
 
 xset +fp /home/nikyq/.local/share/fonts
 xset fp rehash
+
+xrdb -load .Xdefaults
