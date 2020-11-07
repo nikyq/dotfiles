@@ -3,7 +3,7 @@
 ! special
 *.foreground: #c7c7c7
 *.background: #161616
-*.pointerColor: #c7c7c7 # IDK TRY THIS
+*.pointerColor: #c7c7c7
 
 ! black
 *.color0: #161616
