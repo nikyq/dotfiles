@@ -77,7 +77,7 @@ URxvt*saveLines:                  5000
 ! for 'fake' transparency (without Compton) uncomment the following three lines
 URxvt*inheritPixmap:            true
 URxvt*transparent:              true
-URxvt*shading:                  20
+URxvt*shading:                  45
 
 ! Normal copy-paste keybindings without perls
 URxvt.iso14755:                   false
