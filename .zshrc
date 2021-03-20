@@ -117,11 +117,11 @@ POWERLEVEL9K_SHORTEN_STRATEGY="truncate_from_right"
 POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(history dir)
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status)
 
-path+=/home/nikyq/scripts
-export path
+# path+=/home/nikyq/scripts
+# export path
 
-dmenu_path+='(emc lock)'
-export dmenu_path
+# dmenu_path+='(emc lock kakaotalk)'
+# export dmenu_path
 
 ZSH_DISABLE_COMPFIX=true
 
@@ -131,7 +131,6 @@ alias yay="yay --pacman powerpill"
 source $ZSH/oh-my-zsh.sh
 autoload -Uz compinit && compinit
 
-PATH="/home/nikyq/perl5/bin${PATH:+:${PATH}}"; export PATH;
 PERL5LIB="/home/nikyq/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
 PERL_LOCAL_LIB_ROOT="/home/nikyq/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
 PERL_MB_OPT="--install_base \"/home/nikyq/perl5\""; export PERL_MB_OPT;

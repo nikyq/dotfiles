@@ -38,7 +38,7 @@
 (defun indent-relative-back ()
   (interactive)
   (if (and abbrev-mode
-	   (eq (char-syntax (preceding-char)) ?w))
+           (eq (char-syntax (preceding-char)) ?w))
       (expand-abbrev))
   (let ((start-column (current-column))
 	indent)
