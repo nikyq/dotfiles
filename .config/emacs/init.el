@@ -86,8 +86,8 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper hydra flycheck-haskell expand-region
-          lsp-mode lsp-ui jupyter yasnippet vterm eglot-jl)
+(leaf-all counsel swiper hydra expand-region
+          lsp-mode lsp-ui yasnippet vterm)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -137,9 +137,9 @@
 ;;           (evil-define-key 'visual global-map (kbd "SPC") 'evil-execute-in-god-state)
 ;;           (evil-define-key 'god global-map (kbd "ESC") 'evil-god-state-bail))
 
-(leaf aggressive-indent
-  :straight t
-  :config (global-aggressive-indent-mode 1))
+;; (leaf aggressive-indent
+;;   :straight t
+;;   :config (global-aggressive-indent-mode 1))
 
 (straight-use-package
   '(selectrum :host github :repo "raxod502/selectrum")) ; Look! This library is not even on MELPA! Amazing!
@@ -189,12 +189,6 @@
   :require t
   :leaf-defer nil
   :bind (:magit-file-mode-map ("C-c C-c" . magit-stage-current-buffer-and-commit)))
-
-(leaf flycheck
-  :straight t
-  :hook (haskell-mode-hook . flycheck-mode)
-  :config (flycheck-add-next-checker 'haskell-stack-ghc 'haskell-hlint)
-          (flycheck-add-next-checker 'haskell-ghc 'haskell-hlint))
 
 (leaf treemacs
   :straight t
@@ -278,50 +272,6 @@
 (leaf haskell-mode
   :straight t
   :hook (haskell-mode-hook . interactive-haskell-mode))
-
-(leaf julia-snail
-  :straight (julia-snail :type git
-                         :host github
-                         :repo "gcv/julia-snail"
-                         :files ("JuliaSnail.jl" "*.el"))
-  :hook (julia-mode-hook . julia-snail-mode))
-
-(leaf lsp-julia
-  :straight t
-  :require t
-  :config 
-  (defun lsp-julia--rls-command ()
-    "The command to lauch the Julia Language Server."
-    `(,lsp-julia-command
-      ,@lsp-julia-flags
-      ,(concat "-e using LanguageServer, Sockets, SymbolServer;"
-               " server = LanguageServer.LanguageServerInstance("
-               " stdin, stdout, "
-               " \"" (lsp-julia--get-root) "\","
-               " \"" (lsp-julia--get-depot-path) "\");"
-               " server.runlinter = true;"
-               " run(server);")))
-  (setq lsp-folding-range-limit 100)
-  (setq lsp-julia-flags '("--startup-file=no" "--history-file=no")))
-
-(leaf nodejs-repl
-  :straight t
-  :require t
-  :bind (:js-mode-map ("C-x C-e" . nodejs-repl-send-last-expression)
-                      ("C-c C-j" . nodejs-repl-send-line)
-                      ("C-c C-r" . nodejs-repl-send-region)
-                      ("C-c C-l" . nodejs-repl-load-file)
-                      ("C-c C-z" . nodejs-switch-to-repl)))
-
-(leaf cmake-ide
-  :straight t
-  :config (progn (dolist (ccommon '(c-mode-hook c++-mode-hook cmake-mode-hook))
-                   (add-hook ccommon
-                             (lambda ()
-                               (if (cide--locate-project-dir)
-                                   (progn (setq-local cmake-ide-build-dir
-                                                      (concat (cide--locate-project-dir) "build"))
-                                          (cmake-ide-setup))))))))
 
 (leaf elcord
   :straight t
