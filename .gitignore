@@ -1,5 +1,6 @@
 .config/*
 !.config/polybar
 !.config/i3
+!.config/emacs
 .oh-my-zsh/.git*
 .emacs.d/auto-save-list
