@@ -28,7 +28,7 @@
 
 (defun load-config ()
   (interactive)
-  (load-file "~/.emacs.d/init.el"))
+  (load-file "~/.config/emacs/init.el"))
 
 (defun magit-stage-current-buffer-and-commit ()
   (interactive)
@@ -188,7 +188,8 @@
   :straight t
   :require t
   :leaf-defer nil
-  :bind (:magit-file-mode-map ("C-c C-c" . magit-stage-current-buffer-and-commit)))
+ ; :bind (:magit-file-mode-map ("C-c C-c" . magit-stage-current-buffer-and-commit))
+  )
 
 (leaf treemacs
   :straight t
