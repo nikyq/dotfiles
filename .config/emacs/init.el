@@ -188,8 +188,7 @@
   :straight t
   :require t
   :leaf-defer nil
- ; :bind (:magit-file-mode-map ("C-c C-c" . magit-stage-current-buffer-and-commit))
-  )
+  :config (define-key global-map (kbd "C-c C-c") 'magit-stage-current-buffer-and-commit))
 
 (leaf treemacs
   :straight t
@@ -216,6 +215,10 @@
                   :repo "federicotdn/verb")
   :config (define-key org-mode-map (kbd "C-c C-r") verb-command-map))
 
+(leaf key-chord
+  :straight t
+  :custom (key-chord-two-keys-delay . 0.01)
+  :config (key-chord-mode 1))
 
 (leaf smartparens
   :straight t
@@ -257,11 +260,6 @@
 (leaf avy
   :straight t
   :require t)
-
-(leaf key-chord
-  :straight t
-  :custom (key-chord-two-keys-delay . 0.01)
-  :config (key-chord-mode 1))
 
 (leaf windmove
   :straight t
