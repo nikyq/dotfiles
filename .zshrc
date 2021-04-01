@@ -5,7 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-plugins=(git zsh-z vi-mode fzf fzf-tab zsh-autosuggestions)
+plugins=(git zsh-z vi-mode fzf fzf-tab zsh-autosuggestions rustup)
 
 export TERM="xterm-256color" 
 
