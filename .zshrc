@@ -113,15 +113,13 @@ bindkey -v
 # Custom
 ###################################################################################################################
 
+source "$HOME/.cargo/env"
 source "$HOME/.zsh/plugins/zsh-system-clipboard/zsh-system-clipboard.zsh"
 
 setopt globdots
 
 export FZF_CTRL_T_COMMAND='find .'
 export XDG_CONFIG_HOME='/home/nikyq/.config'
-
-# path+=/home/nikyq/scripts
-# export path
 
 # dmenu_path+='(emc lock kakaotalk)'
 # export dmenu_path
