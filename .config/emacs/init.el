@@ -86,8 +86,7 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper hydra expand-region
-          lsp-mode lsp-ui yasnippet vterm)
+(leaf-all counsel swiper hydra expand-region yasnippet vterm flycheck)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -160,10 +159,18 @@
 
 (leaf lsp-mode
   :straight t
+
+  :custom
+  (lsp-rust-analyzer-cargo-watch-command . "clippy")
+  (lsp-rust-analyzer-server-display-inlay-hints . t)
+
   :config
   (setq lsp-enable-indentation nil)
   (setq gc-cons-threshold 100000000)
   (setq read-process-output-max (* 1024 1024)))
+
+(leaf lsp-ui
+  :straight t)
 
 (leaf eglot
   :preface
@@ -174,6 +181,11 @@
   :straight t
   :require t
   :bind ("M-<tab>" . company-complete))
+
+(leaf yasnippet
+  :straight t
+  :config (yas-reload-all)
+  :hook (prog-mode-hook . yas-minor-mode))
 
 (leaf rtags
   :straight t
@@ -271,6 +283,23 @@
 (leaf haskell-mode
   :straight t
   :hook (haskell-mode-hook . interactive-haskell-mode))
+
+(leaf rustic
+  :straight t
+  :hook (rustic-mode-hook . (lambda () (setq-local buffer-save-without-query t)))
+  :bind (:rustic-mode-map
+         ("M-?" . lsp-find-references)
+         ("C-c C-c l" . flycheck-list-errors)
+         ("C-c C-c a" . lsp-execute-code-action)
+         ("C-c C-c r" . lsp-rename)
+         ("C-c C-c q" . lsp-workspace-restart)
+         ("C-c C-c Q" . lsp-workspace-shutdown)
+         ("C-c C-c s" . lsp-rust-analzyer-status))
+  :config
+  (setq lsp-eldoc-hook nil)
+  (setq lsp-enable-symbol-highlighting nil)
+  (setq lsp-signature-auto-activate nil))
+
 
 (leaf elcord
   :straight t
