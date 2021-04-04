@@ -140,6 +140,13 @@
 ;;   :straight t
 ;;   :config (global-aggressive-indent-mode 1))
 
+(leaf undo-tree
+  :straight t
+  :config
+  (turn-on-undo-tree-mode)
+  (define-key evil-normal-state-map (kbd "C-r") 'undo-tree-redo)
+  (define-key evil-normal-state-map (kbd "u") 'undo-tree-undo))
+
 (straight-use-package
   '(selectrum :host github :repo "raxod502/selectrum")) ; Look! This library is not even on MELPA! Amazing!
 
