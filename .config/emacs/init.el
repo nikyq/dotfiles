@@ -170,7 +170,8 @@
   (setq read-process-output-max (* 1024 1024)))
 
 (leaf lsp-ui
-  :straight t)
+  :straight t
+  :custom (lsp-ui-doc-position . 'bottom))
 
 (leaf eglot
   :preface
