@@ -128,6 +128,7 @@ ZSH_DISABLE_COMPFIX=true
 
 alias npi="npm --save install"
 alias yay="yay --pacman powerpill"
+alias hsrun="stack install && stack run"
 
 source $ZSH/oh-my-zsh.sh
 autoload -Uz compinit && compinit
