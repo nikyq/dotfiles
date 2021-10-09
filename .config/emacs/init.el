@@ -86,7 +86,7 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper hydra expand-region yasnippet vterm flycheck maude-mode)
+(leaf-all counsel swiper hydra expand-region yasnippet vterm flycheck maude-mode) 
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -261,8 +261,15 @@
 (leaf symex
   :straight t
   :config
+  (setq symex--user-evil-keyspec
+        '(("j" . symex-go-up)
+          ("k" . symex-go-down)
+          ("C-j" . symex-climb-branch)
+          ("C-k" . symex-descend-branch)
+          ("M-j" . symex-goto-highest)
+          ("M-k" . symex-goto-lowest)))
   (symex-initialize)
-  (evil-define-key 'normal 'global-map (kbd ",") 'symex-mode-interface))
+  (evil-define-key 'normal 'global (kbd ",") 'symex-mode-interface))
 
 (leaf magit
   :straight t
@@ -313,12 +320,22 @@
   :require
   :config (define-key global-map (kbd "C-/") 'avy-goto-word-0))
 
+(leaf rainbow-delimiters
+  :straight t
+  :hook
+  (lisp-mode-hook . #'rainbow-delimiters-mode)
+  (emacs-lisp-mode-hook . #'rainbow-delimiters-mode)
+  (clojure-mode-hook . #'rainbow-delimiters-mode))
+
 (leaf windmove
   :straight t
   :config (evil-define-key 'normal 'global-map (kbd "M-h") 'windmove-left)
           (evil-define-key 'normal 'global-map (kbd "M-l") 'windmove-right)
           (evil-define-key 'normal 'global-map (kbd "M-k") 'windmove-up)
           (evil-define-key 'normal 'global-map (kbd "M-j") 'windmove-down))
+
+(leaf cider
+  :straight t)
 
 (leaf haskell-mode
   :straight t
@@ -355,6 +372,7 @@
 ;; ------------------------------------------------------------------------------------
 
 (config-global)
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -362,12 +380,21 @@
  ;; If there is more than one, they won't work right.
  '(centaur-tabs-background-color "black")
  '(centaur-tabs-mode t nil (centaur-tabs))
- '(haskell-indentation-layout-offset 4)
- '(haskell-indentation-starter-offset 4)
- '(haskell-indentation-where-post-offset 4))
+ '(haskell-indentation-layout-offset 4 t)
+ '(haskell-indentation-starter-offset 4 t)
+ '(haskell-indentation-where-post-offset 4 t))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(rainbow-delimiters-depth-1-face ((t (:inherit rainbow-delimiters-base-face :foreground "grey55"))))
+ '(rainbow-delimiters-depth-2-face ((t (:inherit rainbow-delimiters-base-face :foreground "SkyBlue1"))))
+ '(rainbow-delimiters-depth-3-face ((t (:inherit rainbow-delimiters-base-face :foreground "SeaGreen1"))))
+ '(rainbow-delimiters-depth-4-face ((t (:inherit rainbow-delimiters-base-face :foreground "orchid"))))
+ '(rainbow-delimiters-depth-5-face ((t (:inherit rainbow-delimiters-base-face :foreground "khaki1"))))
+ '(rainbow-delimiters-depth-6-face ((t (:inherit rainbow-delimiters-base-face :foreground "deep sky blue"))))
+ '(rainbow-delimiters-depth-7-face ((t (:inherit rainbow-delimiters-base-face :foreground "lime green"))))
+ '(rainbow-delimiters-depth-8-face ((t (:inherit rainbow-delimiters-base-face :foreground "maroon1"))))
+ '(rainbow-delimiters-depth-9-face ((t (:inherit rainbow-delimiters-base-face :foreground "DarkGoldenrod1")))))
