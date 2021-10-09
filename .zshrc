@@ -127,6 +127,7 @@ export XDG_CONFIG_HOME='/home/nikyq/.config'
 ZSH_DISABLE_COMPFIX=true
 
 alias npi="npm --save install"
+alias to="z"
 alias yay="yay --pacman powerpill"
 alias hsrun="stack install && stack run"
 
