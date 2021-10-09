@@ -86,7 +86,7 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper hydra expand-region yasnippet vterm flycheck)
+(leaf-all counsel swiper hydra expand-region yasnippet vterm flycheck maude-mode)
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -102,12 +102,12 @@
   (setq face-font-rescale-alist
         '(("NanumGothicCoding" . 1.1)))
 
-  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding"))
-
                                         ;| 가 | 나 | 다 | 라 | 마 | 바 | 사 | 아 | 자 | 차 |
                                         ;| aa | bb | cc | dd | ee | ff | gg | hh | ii | jj |
 
                                         ; (define-key global-map (kbd "s-c") 'evil-execute-in-god-state)
+  
+  (set-input-method "korean-hangul")
 
   (setq c-basic-offset 4)
   (c-set-offset 'brace-list-intro '+)
@@ -118,7 +118,56 @@
   (add-hook 'after-init-hook 'global-company-mode)
 
   (tool-bar-mode 0)
-  (centaur-tabs-mode 1))
+  (centaur-tabs-mode 1)
+
+  (with-eval-after-load "quail"
+    (push
+     (cons "colemak"
+           (concat
+            "                              "
+            "`~1!2@3#4$5%6^7&8*9(0)-_=+    "   ; numbers
+            "  qQwWfFpPgGjJlLuUyY;:[{]}\|\|  " ; qwerty
+            "  aArRsStTdDhHnNeEiIoO'\"      "   ; asdf
+            "  zZxXcCvVbBkKmM,<.>/?        "   ; zxcv
+            "                              "))
+     quail-keyboard-layout-alist)
+
+    (quail-set-keyboard-layout "colemak"))
+
+  (with-eval-after-load "quail/hangul"
+    (defun hangul2-input-method (key)
+      "2-Bulsik input method."
+      (setq key (quail-keyboard-translate key))
+      (if (or buffer-read-only (not (alphabetp key)))
+          (list key)
+        (quail-setup-overlays nil)
+        (let ((input-method-function nil)
+              (echo-keystrokes 0)
+              (help-char nil))
+          (setq hangul-queue (make-vector 6 0))
+          (hangul2-input-method-internal key)
+          (unwind-protect
+              (catch 'exit-input-loop
+                (while t
+                  (let* ((seq (read-key-sequence nil))
+                         (cmd (lookup-key hangul-im-keymap seq))
+                         key)
+                    (cond
+                     ((and (stringp seq)
+                           (= 1 (length seq))
+                           (setq key (quail-keyboard-translate (aref seq 0)))
+                           (alphabetp key))
+                      (hangul2-input-method-internal key))
+                     ((commandp cmd)
+                      (call-interactively cmd))
+                     (t
+                      (setq unread-command-events
+                            (nconc (listify-key-sequence seq)
+                                   unread-command-events))
+                      (throw 'exit-input-loop nil))))))
+            (quail-delete-overlays))))))
+
+  (set-fontset-font t 'hangul (font-spec :name "NanumGothicCoding")))
 
 ;; ------------------------------------------------------------------------------------
 
@@ -128,7 +177,10 @@
 (leaf evil
   :straight t
   :leaf-defer nil
-  :config (evil-mode 1))
+  :pre-setq
+  (evil-want-C-u-scroll . t)
+  :config
+  (evil-mode 1))
 
 ;; (leaf evil-god-state
 ;;   :straight t
@@ -143,9 +195,11 @@
 (leaf undo-tree
   :straight t
   :config
-  (turn-on-undo-tree-mode)
+  (global-undo-tree-mode)
   (define-key evil-normal-state-map (kbd "C-r") 'undo-tree-redo)
-  (define-key evil-normal-state-map (kbd "u") 'undo-tree-undo))
+  (define-key evil-normal-state-map (kbd "u") 'undo-tree-undo)
+  :bind
+  (:undo-tree-map ("C-/". nil)))
 
 (straight-use-package
   '(selectrum :host github :repo "raxod502/selectrum")) ; Look! This library is not even on MELPA! Amazing!
@@ -229,6 +283,13 @@
 (leaf org
   :require t)
 
+(leaf org-mind-map
+  :straight t
+  :init
+  (require 'ox-org)
+  :config
+  (setq org-mind-map-engine "dot"))
+
 (leaf verb
   :straight (verb :type git
                   :host github
@@ -240,46 +301,11 @@
   :custom (key-chord-two-keys-delay . 0.01)
   :config (key-chord-mode 1))
 
-(leaf smartparens
-  :straight t
-  :require smartparens-config
-  :hook ((lisp-mode-hook emacs-lisp-mode-hook) . smartparens-strict-mode)
-  :hydra (hydra-sp
-          (evil-normal-state-map ",")
-          "Smartparens"
-          ("f" avy-goto-char-timer)
-          ("F" (lambda () (interactive)
-                          (avy-goto-open-paren)
-                          (forward-char)))
-          ("p" avy-goto-closed-paren)
-          ("o" (lambda () (interactive)
-                          (if (eq (string-to-char ")") (char-after))
-                              (sp-beginning-of-sexp)
-                            (sp-end-of-sexp))))
-          ("h" sp-backward-slurp-sexp)
-          ("H" sp-backward-barf-sexp)
-          ("l" sp-forward-slurp-sexp)
-          ("L" sp-forward-barf-sexp)
-          ; ("j" (sp-transpose-sexp 1))
-          ; ("k" (sp-transpose-sexp -1))  ; It'd probably take quite much time to make these work
-          ("u" undo-tree-undo)
-          ("e" (lambda () (interactive)
-                          (sp-end-of-sexp)
-                          (eval-last-sexp)))
-          ("/" sp-split-sexp)
-          ("s" sp-splice-sexp)
-          ; TODO : undo
-          ("i" evil-insert)
-          ("ESC" nil :exit t))
-  :config (key-chord-define evil-insert-state-map (kbd "))") 'hydra-sp/body))
-
-(leaf evil-smartparens
-  :straight t
-  :hook (smartparens-enabled-hook . evil-smartparens-mode))
-
 (leaf avy
   :straight t
-  :require t)
+  :require t
+  :require
+  :config (define-key global-map (kbd "C-/") 'avy-goto-word-0))
 
 (leaf windmove
   :straight t
@@ -290,7 +316,13 @@
 
 (leaf haskell-mode
   :straight t
-  :hook (haskell-mode-hook . interactive-haskell-mode))
+  :hook (haskell-mode-hook . interactive-haskell-mode)
+  :custom
+  (haskell-indentation-layout-offset . 4)
+  (haskell-indentation-starter-offset . 4)
+  (haskell-indentation-left-offset . 4)
+  (haskell-indentation-where-pre-offset . 2)
+  (haskell-indentation-where-post-offset . 4))
 
 (leaf rustic
   :straight t
@@ -323,7 +355,10 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(centaur-tabs-background-color "black")
- '(centaur-tabs-mode t nil (centaur-tabs)))
+ '(centaur-tabs-mode t nil (centaur-tabs))
+ '(haskell-indentation-layout-offset 4)
+ '(haskell-indentation-starter-offset 4)
+ '(haskell-indentation-where-post-offset 4))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
