@@ -258,6 +258,12 @@
   :config (which-key-mode 1))
 ;; (which-key-enable-god-mode-support)
 
+(leaf symex
+  :straight t
+  :config
+  (symex-initialize)
+  (evil-define-key 'normal 'global-map (kbd ",") 'symex-mode-interface))
+
 (leaf magit
   :straight t
   :require t
