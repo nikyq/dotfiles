@@ -267,9 +267,12 @@
           ("C-j" . symex-climb-branch)
           ("C-k" . symex-descend-branch)
           ("M-j" . symex-goto-highest)
-          ("M-k" . symex-goto-lowest)))
+          ("M-k" . symex-goto-lowest)
+          ("C-S-n" . symex-capture-forward)))
   (symex-initialize)
-  (evil-define-key 'normal 'global (kbd ",") 'symex-mode-interface))
+  (evil-define-key 'normal 'global (kbd ",") 'symex-mode-interface)
+  :custom
+  (symex-quote-prefix-list . '("'" "`" "#")))
 
 (leaf magit
   :straight t
@@ -323,9 +326,9 @@
 (leaf rainbow-delimiters
   :straight t
   :hook
-  (lisp-mode-hook . #'rainbow-delimiters-mode)
-  (emacs-lisp-mode-hook . #'rainbow-delimiters-mode)
-  (clojure-mode-hook . #'rainbow-delimiters-mode))
+  (lisp-mode-hook . rainbow-delimiters-mode)
+  (emacs-lisp-mode-hook . rainbow-delimiters-mode)
+  (clojure-mode-hook . rainbow-delimiters-mode))
 
 (leaf windmove
   :straight t
