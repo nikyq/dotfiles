@@ -352,7 +352,9 @@
   :require t
   :hook (clojure-mode-hook . clj-refactor-mode)
   :config
-  (cljr-add-keybindings-with-prefix "C-c C-y"))
+  (cljr-add-keybindings-with-prefix "C-c C-y")
+  :custom
+  (cljr-warn-on-eval . nil))
 
 (leaf haskell-mode
   :straight t
