@@ -256,7 +256,7 @@
 (leaf which-key
   :straight t
   :config (which-key-mode 1))
-;; (which-key-enable-god-mode-support)
+ ;; (which-key-enable-god-mode-support)
 
 (leaf symex
   :straight t
@@ -273,6 +273,13 @@
   (evil-define-key 'normal 'global (kbd ",") 'symex-mode-interface)
   :custom
   (symex-quote-prefix-list . '("'" "`" "#")))
+
+(leaf paredit
+  :straight t
+  :bind (("C-S-n" . paredit-forward-slurp-sexp)
+         ("C-S-j" . paredit-backward-barf-sexp)
+         ("C-S-h" . paredit-backward-slurp-sexp)
+         ("C-S-k" . paredit-forward-barf-sexp)))
 
 (leaf magit
   :straight t
