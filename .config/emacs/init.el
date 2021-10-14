@@ -86,7 +86,7 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper hydra expand-region yasnippet vterm flycheck maude-mode) 
+(leaf-all counsel swiper hydra expand-region yasnippet vterm flycheck maude-mode clj-refactor) 
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
