@@ -86,7 +86,7 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper hydra expand-region yasnippet vterm flycheck maude-mode clj-refactor) 
+(leaf-all counsel swiper hydra expand-region yasnippet vterm flycheck maude-mode) 
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -346,6 +346,13 @@
 
 (leaf cider
   :straight t)
+
+(leaf clj-refactor
+  :straight t
+  :require t
+  :hook (clojure-mode-hook . clj-refactor-mode)
+  :config
+  (cljr-add-keybindings-with-prefix "C-c C-y"))
 
 (leaf haskell-mode
   :straight t
