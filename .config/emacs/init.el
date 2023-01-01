@@ -4,6 +4,8 @@
 ;; STRAIGHT SETUP
 ;; This section was copied from github.com/raxod502/striaght.el/README.md
 
+(defvar comp-deferred-compilation-deny-list ())
+
 (setq package-enable-at-startup nil)
 
 (setq straight-repository-branch "develop")
@@ -86,7 +88,7 @@
 
 (exec-path-from-shell-initialize)
 (leaf-keywords-init)
-(leaf-all counsel swiper hydra expand-region yasnippet vterm flycheck maude-mode) 
+(leaf-all counsel swiper hydra expand-region vterm flycheck maude-mode tuareg-mode) 
 
 ;; ------------------------------------------------------------------------------------
 ;; GLOBAL CONFIGS
@@ -195,9 +197,10 @@
 (leaf undo-tree
   :straight t
   :config
-  (global-undo-tree-mode)
   (define-key evil-normal-state-map (kbd "C-r") 'undo-tree-redo)
   (define-key evil-normal-state-map (kbd "u") 'undo-tree-undo)
+  :defer-config
+  (global-undo-tree-mode)
   :bind
   (:undo-tree-map ("C-/". nil)))
 
@@ -246,7 +249,9 @@
 
 (leaf yasnippet
   :straight t
-  :config (yas-reload-all)
+  :config
+  (yas-reload-all)
+  (define-key yas-minor-mode-map (kbd "M-c") `(menu-item "" yas-clear-field :filter ,(lambda (cmd) (if (yas-current-field) cmd))))
   :hook (prog-mode-hook . yas-minor-mode))
 
 (leaf rtags
@@ -258,21 +263,22 @@
   :config (which-key-mode 1))
  ;; (which-key-enable-god-mode-support)
 
-(leaf symex
-  :straight t
-  :config
-  (setq symex--user-evil-keyspec
-        '(("j" . symex-go-up)
-          ("k" . symex-go-down)
-          ("C-j" . symex-climb-branch)
-          ("C-k" . symex-descend-branch)
-          ("M-j" . symex-goto-highest)
-          ("M-k" . symex-goto-lowest)
-          ("C-S-n" . symex-capture-forward)))
-  (symex-initialize)
-  (evil-define-key 'normal 'global (kbd ",") 'symex-mode-interface)
-  :custom
-  (symex-quote-prefix-list . '("'" "`" "#")))
+;; Disabled for now since symex-mode gets in the way while working with other languages
+;; (leaf symex
+;;   :straight t
+;;   :config
+;;   (setq symex--user-evil-keyspec
+;;         '(("j" . symex-go-up)
+;;           ("k" . symex-go-down)
+;;           ("C-j" . symex-climb-branch)
+;;           ("C-k" . symex-descend-branch)
+;;           ("M-j" . symex-goto-highest)
+;;           ("M-k" . symex-goto-lowest)
+;;           ("C-S-n" . symex-capture-forward)))
+;;   (symex-initialize)
+;;   (evil-define-key 'normal 'lisp-mode-map (kbd ",") 'symex-mode-interface)
+;;   :custom
+;;   (symex-quote-prefix-list . '("'" "`" "#")))
 
 (leaf paredit
   :straight t
@@ -356,6 +362,13 @@
   :custom
   (cljr-warn-on-eval . nil))
 
+(leaf proof-general
+  :straight t)
+
+(leaf company-coq
+  :straight t
+  :hook (coq-mode-hook . company-coq-mode))
+
 (leaf haskell-mode
   :straight t
   :hook (haskell-mode-hook . interactive-haskell-mode)
@@ -399,9 +412,26 @@
  ;; If there is more than one, they won't work right.
  '(centaur-tabs-background-color "black")
  '(centaur-tabs-mode t nil (centaur-tabs))
+ '(custom-enabled-themes '(deeper-blue))
  '(haskell-indentation-layout-offset 4 t)
  '(haskell-indentation-starter-offset 4 t)
- '(haskell-indentation-where-post-offset 4 t))
+ '(haskell-indentation-where-post-offset 4 t)
+ '(verilog-indent-level-behavioral 2)
+ '(verilog-indent-level-declaration 2)
+ '(verilog-indent-level-module 2)
+ '(warning-suppress-types
+   '((comp)
+     (leaf)
+     (leaf)
+     (leaf)
+     (comp)
+     (comp)
+     (comp)
+     (comp)
+     (comp)
+     (comp)
+     (comp)
+     (comp))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
